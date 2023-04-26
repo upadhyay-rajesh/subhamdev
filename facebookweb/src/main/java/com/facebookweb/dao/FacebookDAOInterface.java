@@ -6,4 +6,6 @@ public interface FacebookDAOInterface {
 
 	int registerUserDAO(FacebookUser fu);
 
+	int loginrUserDAO(FacebookUser fu);
+
 }

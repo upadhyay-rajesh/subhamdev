@@ -11,4 +11,9 @@ public class FacebookService implements FacebookServiceInterface {
 		return fd.registerUserDAO(fu);
 	}
 
+	public int loginUserService(FacebookUser fu) {
+		FacebookDAOInterface fd=FacebookDAOFactory.createObject();
+		return fd.loginrUserDAO(fu);
+	}
+
 }

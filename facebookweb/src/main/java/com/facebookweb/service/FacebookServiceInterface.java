@@ -6,4 +6,6 @@ public interface FacebookServiceInterface {
 
 	int registerUserService(FacebookUser fu);
 
+	int loginUserService(FacebookUser fu);
+
 }

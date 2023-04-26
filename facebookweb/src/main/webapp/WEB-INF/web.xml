@@ -10,8 +10,38 @@
   	<description></description>
   	<servlet-class>com.facebookweb.controller.RegisterationServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<display-name>LoginServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ViewProfileServlet</servlet-name>
+  	<display-name>ViewProfileServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.ViewProfileServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LogoutProfileServlet</servlet-name>
+  	<display-name>LogoutProfileServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.LogoutProfileServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterationServlet</servlet-name>
   	<url-pattern>/RegisterationServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ViewProfileServlet</servlet-name>
+  	<url-pattern>/ViewProfileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LogoutProfileServlet</servlet-name>
+  	<url-pattern>/LogoutProfileServlet</url-pattern>
   </servlet-mapping>
 </web-app>
