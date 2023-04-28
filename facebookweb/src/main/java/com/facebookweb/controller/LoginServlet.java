@@ -3,6 +3,8 @@ package com.facebookweb.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +20,21 @@ import com.facebookweb.service.FacebookServiceInterface;
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
+	
+	
+	
+	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String email=request.getParameter("email");
 		String password=request.getParameter("pwd");
+		
+		
+		ServletConfig sf=getServletConfig();
+		Object oo=sf.getInitParameter("myvariable");
+		
+		ServletContext sf1=getServletContext();
+		Object oo1=sf1.getInitParameter("myvariableoncontainer");
 				
 		FacebookUser fu=new FacebookUser();
 	
@@ -44,10 +57,11 @@ public class LoginServlet extends HttpServlet {
 				HttpSession ss=request.getSession(true); //creating session to share information bydefault session will be valid for 30 minutes
 				ss.setAttribute("userid",email);
 				
-				ss.setMaxInactiveInterval(5); //setting session for 5 minutes
+				//ss.setMaxInactiveInterval(5); //setting session for 5 minutes
 
 
 			out.println("<br>Welcome "+email);
+			out.println("<br>my variable value is  "+oo+"    "+oo1);
 			out.println("<br><a href=ViewProfileServlet>view profile</a> ");
 			out.println("<br><a href=EditProfileServlet>edit profile</a> ");
 			out.println("<br><a href=DeleteProfileServlet>delete profile</a> ");
@@ -58,9 +72,29 @@ public class LoginServlet extends HttpServlet {
 			
 			}
 			else {
-				out.println("invalid id and password <a href=login.html>Try Again</a>");
+				out.println("invalid id and password ");
+				RequestDispatcher rd=getServletContext().getRequestDispatcher("/login.html");
+				rd.include(request, response);
 			}
 		out.println("</body></html>");
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

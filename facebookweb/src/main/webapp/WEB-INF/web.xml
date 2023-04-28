@@ -4,6 +4,12 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+  <context-param>
+  		<param-name>myvariableoncontainer</param-name>
+  		<param-value>Rajesh</param-value>
+  	</context-param>
+  
   <servlet>
   	<servlet-name>RegisterationServlet</servlet-name>
   	<display-name>RegisterationServlet</display-name>
@@ -14,6 +20,10 @@
   	<servlet-name>LoginServlet</servlet-name>
   	<display-name>LoginServlet</display-name>
   	<description></description>
+  	<init-param>
+  		<param-name>myvariable</param-name>
+  		<param-value>Sumanth</param-value>
+  	</init-param>
   	<servlet-class>com.facebookweb.controller.LoginServlet</servlet-class>
   </servlet>
   <servlet>
@@ -27,6 +37,18 @@
   	<display-name>LogoutProfileServlet</display-name>
   	<description></description>
   	<servlet-class>com.facebookweb.controller.LogoutProfileServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EditProfileServlet</servlet-name>
+  	<display-name>EditProfileServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.EditProfileServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EditProfileServlet1</servlet-name>
+  	<display-name>EditProfileServlet1</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.EditProfileServlet1</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterationServlet</servlet-name>
@@ -43,5 +65,13 @@
   <servlet-mapping>
   	<servlet-name>LogoutProfileServlet</servlet-name>
   	<url-pattern>/LogoutProfileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditProfileServlet</servlet-name>
+  	<url-pattern>/EditProfileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditProfileServlet1</servlet-name>
+  	<url-pattern>/EditProfileServlet1</url-pattern>
   </servlet-mapping>
 </web-app>
