@@ -17,7 +17,7 @@
   	<servlet-class>com.facebookweb.controller.RegisterationServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>LoginServlet</servlet-name>
+  	<servlet-name>abc</servlet-name>
   	<display-name>LoginServlet</display-name>
   	<description></description>
   	<init-param>
@@ -55,8 +55,8 @@
   	<url-pattern>/RegisterationServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>LoginServlet</servlet-name>
-  	<url-pattern>/LoginServlet</url-pattern>
+  	<servlet-name>abc</servlet-name>
+  	<url-pattern>/pp</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>ViewProfileServlet</servlet-name>

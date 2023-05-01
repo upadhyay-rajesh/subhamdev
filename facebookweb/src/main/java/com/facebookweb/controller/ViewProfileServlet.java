@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,11 +25,20 @@ public class ViewProfileServlet extends HttpServlet {
 		Object oo1=ss.getAttribute("userid");
 		String email1=oo1.toString();
 		
+		Cookie cc[]=request.getCookies();
+		
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		
 		out.println("<html><body>");
-		out.println("user id using ServletContext is "+email);
+		
+		for(int i=0;i<cc.length;i++) {
+			Cookie c1=cc[i];
+			out.println("<br>Cookie Name "+c1.getName());
+			out.println("<br>Cookie Value "+c1.getValue());
+		}
+		
+		out.println("<br>user id using ServletContext is "+email);
 		out.println("<br>user id using HttpSession is "+email1);
 		out.println("</body></html>");
 		

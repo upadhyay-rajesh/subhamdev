@@ -7,6 +7,8 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,9 +21,13 @@ import com.facebookweb.service.FacebookServiceInterface;
 /**
  * Servlet implementation class LoginServlet
  */
+
 public class LoginServlet extends HttpServlet {
 	
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
 	
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -56,6 +62,9 @@ public class LoginServlet extends HttpServlet {
 				
 				HttpSession ss=request.getSession(true); //creating session to share information bydefault session will be valid for 30 minutes
 				ss.setAttribute("userid",email);
+				
+				Cookie c=new Cookie("mycookie", "hello");
+				response.addCookie(c);
 				
 				//ss.setMaxInactiveInterval(5); //setting session for 5 minutes
 
