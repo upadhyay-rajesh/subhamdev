@@ -1,5 +1,8 @@
 package com.facebookweb.dao;
 
+import java.util.List;
+
+import com.facebookweb.entity.Country;
 import com.facebookweb.entity.FacebookUser;
 
 public interface FacebookDAOInterface {
@@ -11,5 +14,9 @@ public interface FacebookDAOInterface {
 	FacebookUser viewUserDAO(FacebookUser fu);
 
 	int editUserDAO(FacebookUser fu);
+
+	int checkEmailDAO(FacebookUser fu);
+
+	List<Country> loadCountryDAO();
 
 }

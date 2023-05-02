@@ -50,6 +50,24 @@
   	<description></description>
   	<servlet-class>com.facebookweb.controller.EditProfileServlet1</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CheckEmailServlet</servlet-name>
+  	<display-name>CheckEmailServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.CheckEmailServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LoadCountryServlet</servlet-name>
+  	<display-name>LoadCountryServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.LoadCountryServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LoadCaptchaServlet</servlet-name>
+  	<display-name>LoadCaptchaServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.LoadCaptchaServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterationServlet</servlet-name>
   	<url-pattern>/RegisterationServlet</url-pattern>
@@ -73,5 +91,17 @@
   <servlet-mapping>
   	<servlet-name>EditProfileServlet1</servlet-name>
   	<url-pattern>/EditProfileServlet1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CheckEmailServlet</servlet-name>
+  	<url-pattern>/CheckEmailServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoadCountryServlet</servlet-name>
+  	<url-pattern>/LoadCountryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoadCaptchaServlet</servlet-name>
+  	<url-pattern>/LoadCaptchaServlet</url-pattern>
   </servlet-mapping>
 </web-app>

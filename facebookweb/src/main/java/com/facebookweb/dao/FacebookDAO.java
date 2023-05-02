@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.facebookweb.entity.Country;
 import com.facebookweb.entity.FacebookUser;
 
 public class FacebookDAO implements FacebookDAOInterface {
@@ -92,6 +95,54 @@ public class FacebookDAO implements FacebookDAOInterface {
 			e.printStackTrace();
 		}
 		return i;
+	}
+
+	public int checkEmailDAO(FacebookUser fu) {
+		int i=0;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@Rev-PG02REP7:1521:xe","system","rajesh");
+			
+			//System.out.println(fu.getEmail());
+			
+			PreparedStatement ps=con.prepareStatement("select * from facebookuser where email=?");
+			ps.setString(1, fu.getEmail());
+						
+			ResultSet res=ps.executeQuery();
+		//	System.out.println(res.next());
+			if(res.next()) {
+				i=1;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	public List<Country> loadCountryDAO() {
+		List<Country> ff=new ArrayList();
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@Rev-PG02REP7:1521:xe","system","rajesh");
+			
+			PreparedStatement ps=con.prepareStatement("select * from country");
+			
+						
+			ResultSet res=ps.executeQuery();
+			while(res.next()) {
+				Country ff1=new Country();
+				ff1.setCountryId(res.getInt(1));
+				ff1.setCountryName(res.getString(2));
+				
+				ff.add(ff1);
+				
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return ff;
 	}
 
 }
