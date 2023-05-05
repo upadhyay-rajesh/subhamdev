@@ -1,8 +1,15 @@
 package com.facebookweb.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="myfacebookuser")
 public class FacebookUser {
 	private String name;
 	private String password;
+	@Id
 	private String email;
 	private String address;
 	public String getName() {
