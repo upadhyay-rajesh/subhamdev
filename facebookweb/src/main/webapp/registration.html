@@ -87,6 +87,23 @@
 		}
 	}
 	
+	function loadClock(){
+		var xhr=new XMLHttpRequest();
+	
+		xhr.open("GET","LoadClockServlet",true);
+		xhr.send();
+		xhr.onreadystatechange= function(){
+		if(xhr.readyState==4){
+			var result=xhr.responseText;
+			document.getElementById("clocklist").innerHTML=result;
+			
+		}
+		
+	}
+		setTimeout("loadClock()",1000);
+}
+	loadClock();
+	
 	function loadCaptcha(){
 		var xhr=new XMLHttpRequest();
 		
@@ -119,6 +136,7 @@
 
 </head>
 <body onLoad="loadCountry()">
+<div id="clocklist"></div>
 	<div class="wrapper">
 		<div class="form-left">
 			<h2 class="text-uppercase">information</h2>

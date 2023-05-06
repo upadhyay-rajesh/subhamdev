@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,6 +18,13 @@ import com.facebookweb.entity.Country;
 import com.facebookweb.entity.FacebookUser;
 
 public class FacebookDAO implements FacebookDAOInterface {
+	SessionFactory sf=null;
+	Session ss=null;
+	
+	public FacebookDAO() {
+		sf=new Configuration().configure().buildSessionFactory();
+		ss=sf.openSession();
+	}
 
 	public int registerUserDAO(FacebookUser fu) {
 		int i=0;
@@ -38,9 +46,9 @@ public class FacebookDAO implements FacebookDAOInterface {
 		//using hibernate
 		
 		//by default configure method will load hibernate.cfg.xml file
-		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		//SessionFactory sf=new Configuration().configure().buildSessionFactory();
 		
-		Session ss=sf.openSession();
+		//Session ss=sf.openSession();
 		
 		EntityTransaction et=ss.getTransaction();
 		et.begin();
@@ -55,6 +63,7 @@ public class FacebookDAO implements FacebookDAOInterface {
 
 	public int loginrUserDAO(FacebookUser fu) {
 		int i=0;
+		/*
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@Rev-PG02REP7:1521:xe","system","rajesh");
@@ -71,12 +80,28 @@ public class FacebookDAO implements FacebookDAOInterface {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+		}*/
+		//SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		//Session ss=sf.openSession();
+		
+		//FacebookUser ff=ss.load(FacebookUser.class, fu.getEmail()); //select * from myfacebookuser where email=?
+		
+		Query q=ss.createQuery("from com.facebookweb.entity.FacebookUser f where f.email=:em and f.password=:pw");//select * from myfacebookuser f where f.email=? and f.password=?
+		q.setParameter("em", fu.getEmail());
+		q.setParameter("pw", fu.getPassword());
+		
+		FacebookUser ff=(FacebookUser)q.getSingleResult();
+		
+		
+		if(ff!=null) {
+			i=1;
 		}
+		
 		return i;
 	}
 
 	public FacebookUser viewUserDAO(FacebookUser fu) {
-		FacebookUser ff=null;
+		/*
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@Rev-PG02REP7:1521:xe","system","rajesh");
@@ -95,7 +120,11 @@ public class FacebookDAO implements FacebookDAOInterface {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-		}
+		}*/
+		//SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		//Session ss=sf.openSession();
+		
+		FacebookUser ff=ss.load(FacebookUser.class, fu.getEmail()); //select * from myfacebookuser where email=?
 		return ff;
 	}
 
@@ -121,7 +150,7 @@ public class FacebookDAO implements FacebookDAOInterface {
 
 	public int checkEmailDAO(FacebookUser fu) {
 		int i=0;
-		try {
+		/*try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@Rev-PG02REP7:1521:xe","system","rajesh");
 			
@@ -138,13 +167,21 @@ public class FacebookDAO implements FacebookDAOInterface {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+		}*/
+		//SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		//Session ss=sf.openSession();
+		
+		FacebookUser ff=ss.load(FacebookUser.class, fu.getEmail()); //select * from myfacebookuser where email=?
+		if(ff!=null) {
+			i=1;
 		}
+		
 		return i;
 	}
 
 	public List<Country> loadCountryDAO() {
 		List<Country> ff=new ArrayList();
-		try {
+		/*try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@Rev-PG02REP7:1521:xe","system","rajesh");
 			
@@ -163,8 +200,39 @@ public class FacebookDAO implements FacebookDAOInterface {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-		}
+		}*/
+	//	SessionFactory sf=new Configuration().configure().buildSessionFactory();
+	//	Session ss=sf.openSession();
+		
+		Query q=ss.createQuery("from com.facebookweb.entity.Country f");
+		ff=q.getResultList();
+		
 		return ff;
+	}
+	public int deleteProfileDAO(FacebookUser fu) {
+		int i=0;
+		
+		EntityTransaction et=ss.getTransaction();
+		et.begin();
+		
+		ss.delete(fu); //select * from myfacebookuser where email=?
+		et.commit();
+		
+			i=1;
+		
+		
+		return i;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+

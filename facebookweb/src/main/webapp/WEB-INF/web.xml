@@ -68,6 +68,12 @@
   	<description></description>
   	<servlet-class>com.facebookweb.controller.LoadCaptchaServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>LoadClockServlet</servlet-name>
+  	<display-name>LoadClockServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.LoadClockServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterationServlet</servlet-name>
   	<url-pattern>/RegisterationServlet</url-pattern>
@@ -103,5 +109,9 @@
   <servlet-mapping>
   	<servlet-name>LoadCaptchaServlet</servlet-name>
   	<url-pattern>/LoadCaptchaServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoadClockServlet</servlet-name>
+  	<url-pattern>/LoadClockServlet</url-pattern>
   </servlet-mapping>
 </web-app>
