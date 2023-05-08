@@ -7,38 +7,42 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.facebookweb.entity.FacebookUser;
+import com.facebookweb.entity.FriendList;
 import com.facebookweb.service.FacebookServiceFactory;
 import com.facebookweb.service.FacebookServiceInterface;
 
-public class CheckEmailServlet extends HttpServlet {
+
+public class AddFriendServlet extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email=request.getParameter("emailvalue");
+		String receiverfriend=request.getParameter("em");
+		HttpSession hs=request.getSession(true);
+		String senderfriend=hs.getAttribute("userid").toString();
 		
-		System.out.println(email);
+		FacebookUser f=new FacebookUser();
+		f.setEmail(senderfriend);
 		
-		FacebookUser fu=new FacebookUser();
-		fu.setEmail(email);
+		
+		FriendList fl=new FriendList();
+		fl.setReceiverfriend(receiverfriend);
+		fl.setStatus("inactive");
+		fl.setFl(f);
 		
 		FacebookServiceInterface fs=FacebookServiceFactory.createObject();
-		int i=fs.checkEmailService(fu);
+		String i=fs.friendRequestService(fl);
 		
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		
-		out.println("<html><body>");
-			if(i>0) {
-				out.println("<font color=red>Email already have taken choose another email id</font>");
-			
-						
-			}
-			else {
-				out.println("<font color=green>Valid Email</font>");
-			}
-		out.println("</body></html>");
+		out.println("<html><body><center>");
+		if(i!=null) {
+		out.println("<br>  Friend Request sent");
+		}
 		
+		out.println("</center></body></html>");
 	}
 
 }

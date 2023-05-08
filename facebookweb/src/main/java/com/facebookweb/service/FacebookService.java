@@ -6,6 +6,7 @@ import com.facebookweb.dao.FacebookDAOFactory;
 import com.facebookweb.dao.FacebookDAOInterface;
 import com.facebookweb.entity.Country;
 import com.facebookweb.entity.FacebookUser;
+import com.facebookweb.entity.FriendList;
 
 public class FacebookService implements FacebookServiceInterface {
 
@@ -37,6 +38,15 @@ public class FacebookService implements FacebookServiceInterface {
 	public List<Country> loadCountryService() {
 		FacebookDAOInterface fd=FacebookDAOFactory.createObject();
 		return fd.loadCountryDAO();
+	}
+	public List<FacebookUser> viewAllUserService() {
+		FacebookDAOInterface fd=FacebookDAOFactory.createObject();
+		return fd.viewAllUserDAO();
+	}
+
+	public String friendRequestService(FriendList fl) {
+		FacebookDAOInterface fd=FacebookDAOFactory.createObject();
+		return fd.friendrequestrDAO(fl);
 	}
 
 }

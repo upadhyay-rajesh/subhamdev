@@ -2,6 +2,7 @@ package com.facebookweb.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -67,17 +68,15 @@ public class LoginServlet extends HttpServlet {
 				response.addCookie(c);
 				
 				//ss.setMaxInactiveInterval(5); //setting session for 5 minutes
+				
+				List<FacebookUser> ll=fs.viewAllUserService();
+				
+				RequestDispatcher rd=getServletContext().getRequestDispatcher("/userhomepage.jsp");
+				request.setAttribute("userlist", ll);
+				rd.forward(request, response);
 
 
-			out.println("<br>Welcome "+email);
-			out.println("<br>my variable value is  "+oo+"    "+oo1);
-			out.println("<br><a href=ViewProfileServlet>view profile</a> ");
-			out.println("<br><a href=EditProfileServlet>edit profile</a> ");
-			out.println("<br><a href=DeleteProfileServlet>delete profile</a> ");
-			out.println("<br><a href=SearchProfileServlet>search profile</a> ");
-			out.println("<br><a href=ViewAllProfileServlet>view all profile</a> ");
-			out.println("<br><a href=TimeLineProfileServlet>timeline profile</a> ");
-			out.println("<br><a href=LogoutProfileServlet>logout</a> ");
+			
 			
 			}
 			else {

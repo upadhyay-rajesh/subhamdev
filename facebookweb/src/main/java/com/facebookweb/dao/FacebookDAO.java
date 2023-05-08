@@ -16,14 +16,15 @@ import org.hibernate.cfg.Configuration;
 
 import com.facebookweb.entity.Country;
 import com.facebookweb.entity.FacebookUser;
+import com.facebookweb.entity.FriendList;
 
 public class FacebookDAO implements FacebookDAOInterface {
-	SessionFactory sf=null;
-	Session ss=null;
+	//SessionFactory sf=null;
+	//Session ss=null;
 	
 	public FacebookDAO() {
-		sf=new Configuration().configure().buildSessionFactory();
-		ss=sf.openSession();
+	//	sf=new Configuration().configure().buildSessionFactory();
+	//	ss=sf.openSession();
 	}
 
 	public int registerUserDAO(FacebookUser fu) {
@@ -46,9 +47,9 @@ public class FacebookDAO implements FacebookDAOInterface {
 		//using hibernate
 		
 		//by default configure method will load hibernate.cfg.xml file
-		//SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
 		
-		//Session ss=sf.openSession();
+		Session ss=sf.openSession();
 		
 		EntityTransaction et=ss.getTransaction();
 		et.begin();
@@ -81,8 +82,8 @@ public class FacebookDAO implements FacebookDAOInterface {
 		catch(Exception e) {
 			e.printStackTrace();
 		}*/
-		//SessionFactory sf=new Configuration().configure().buildSessionFactory();
-		//Session ss=sf.openSession();
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		Session ss=sf.openSession();
 		
 		//FacebookUser ff=ss.load(FacebookUser.class, fu.getEmail()); //select * from myfacebookuser where email=?
 		
@@ -90,10 +91,10 @@ public class FacebookDAO implements FacebookDAOInterface {
 		q.setParameter("em", fu.getEmail());
 		q.setParameter("pw", fu.getPassword());
 		
-		FacebookUser ff=(FacebookUser)q.getSingleResult();
+		List<FacebookUser> ff=q.getResultList();
 		
 		
-		if(ff!=null) {
+		if(ff.size()>0) {
 			i=1;
 		}
 		
@@ -121,8 +122,8 @@ public class FacebookDAO implements FacebookDAOInterface {
 		catch(Exception e) {
 			e.printStackTrace();
 		}*/
-		//SessionFactory sf=new Configuration().configure().buildSessionFactory();
-		//Session ss=sf.openSession();
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		Session ss=sf.openSession();
 		
 		FacebookUser ff=ss.load(FacebookUser.class, fu.getEmail()); //select * from myfacebookuser where email=?
 		return ff;
@@ -168,11 +169,17 @@ public class FacebookDAO implements FacebookDAOInterface {
 		catch(Exception e) {
 			e.printStackTrace();
 		}*/
-		//SessionFactory sf=new Configuration().configure().buildSessionFactory();
-		//Session ss=sf.openSession();
+		SessionFactory sf1=new Configuration().configure().buildSessionFactory();
+		Session ss1=sf1.openSession();
 		
-		FacebookUser ff=ss.load(FacebookUser.class, fu.getEmail()); //select * from myfacebookuser where email=?
-		if(ff!=null) {
+		//FacebookUser ff=ss1.load(FacebookUser.class, fu.getEmail()); //select * from myfacebookuser where email=?
+		Query q=ss1.createQuery("from com.facebookweb.entity.FacebookUser f where f.email=:em");//select * from myfacebookuser f where f.email=? and f.password=?
+		q.setParameter("em", fu.getEmail());
+		
+		List<FacebookUser> ll=q.getResultList();
+		
+		
+		if(ll.size()>0) {
 			i=1;
 		}
 		
@@ -201,8 +208,8 @@ public class FacebookDAO implements FacebookDAOInterface {
 		catch(Exception e) {
 			e.printStackTrace();
 		}*/
-	//	SessionFactory sf=new Configuration().configure().buildSessionFactory();
-	//	Session ss=sf.openSession();
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		Session ss=sf.openSession();
 		
 		Query q=ss.createQuery("from com.facebookweb.entity.Country f");
 		ff=q.getResultList();
@@ -211,6 +218,8 @@ public class FacebookDAO implements FacebookDAOInterface {
 	}
 	public int deleteProfileDAO(FacebookUser fu) {
 		int i=0;
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		Session ss=sf.openSession();
 		
 		EntityTransaction et=ss.getTransaction();
 		et.begin();
@@ -222,6 +231,32 @@ public class FacebookDAO implements FacebookDAOInterface {
 		
 		
 		return i;
+	}
+
+	public List<FacebookUser> viewAllUserDAO() {
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		Session ss=sf.openSession();
+		
+		Query q=ss.createQuery("from com.facebookweb.entity.FacebookUser f");
+		List<FacebookUser> ff=q.getResultList();
+		
+		return ff;
+	}
+
+	public String friendrequestrDAO(FriendList fl) {
+		String ss1=null;
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		
+		Session ss=sf.openSession();
+		
+		EntityTransaction et=ss.getTransaction();
+		et.begin();
+		
+			ss.save(fl);
+		
+		et.commit();
+		ss1="success";
+		return ss1;
 	}
 
 }

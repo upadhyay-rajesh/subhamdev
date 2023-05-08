@@ -20,7 +20,7 @@ public class LoadClockServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		
 		out.println("<html><body>");
-			out.println("Current time is  <input type=text value="+lt+" id=c >");
+			out.println("Current time is  <input type=text value="+lt+" id=c2 >");
 			
 			
 		out.println("</body></html>");

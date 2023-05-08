@@ -15,9 +15,10 @@
     
     <property name="format_sql">true</property>
     
-   <!--  <property name="hbm2ddl.auto">update</property> -->
+    <property name="hbm2ddl.auto">update</property> 
     
     <mapping class="com.facebookweb.entity.FacebookUser" />
     <mapping class="com.facebookweb.entity.Country" />
+    <mapping class="com.facebookweb.entity.FriendList" />
   </session-factory>
 </hibernate-configuration>

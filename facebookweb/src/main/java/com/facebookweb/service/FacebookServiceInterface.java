@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.facebookweb.entity.Country;
 import com.facebookweb.entity.FacebookUser;
+import com.facebookweb.entity.FriendList;
 
 public interface FacebookServiceInterface {
 
@@ -18,5 +19,8 @@ public interface FacebookServiceInterface {
 	int checkEmailService(FacebookUser fu);
 
 	List<Country> loadCountryService();
+	public List<FacebookUser> viewAllUserService();
+
+	String friendRequestService(FriendList fl);
 
 }
