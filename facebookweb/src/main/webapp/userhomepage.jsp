@@ -14,13 +14,13 @@
 %>
 			<br>Welcome <%= email %>
 			
-			<br><a href=ViewProfileServlet>view profile</a> 
-			<br><a href=EditProfileServlet>edit profile</a> 
-			<br><a href=DeleteProfileServlet>delete profile</a> 
-			<br><a href=SearchProfileServlet>search profile</a> 
-			<br><a href=ViewAllProfileServlet>view all profile</a> 
-			<br><a href=TimeLineProfileServlet>timeline profile</a> 
-			<br><a href=LogoutProfileServlet>logout</a> 
+			<br><a href=FacebookWebGlobalServlet?actiontype=viewprofile>view profile</a> 
+			<br><a href=FacebookWebGlobalServlet?actiontype=editprofile>edit profile</a> 
+			<br><a href=FacebookWebGlobalServlet?actiontype=deleteprofile>delete profile</a> 
+			<br><a href=FacebookWebGlobalServlet?actiontype=searchprofile>search profile</a> 
+			<br><a href=FacebookWebGlobalServlet?actiontype=viewallprofile>view all profile</a> 
+			<br><a href=FacebookWebGlobalServlet?actiontype=timeline>timeline profile</a> 
+			<br><a href=FacebookWebGlobalServlet?actiontype=logoutprofile>logout</a> 
 			
 			<%
 				List<FacebookUser> ll=(List<FacebookUser>)request.getAttribute("userlist");

@@ -53,7 +53,7 @@
 		var xhr=new XMLHttpRequest();
 		
 		//step 2 how xhr will open connection with server?
-				xhr.open("GET","CheckEmailServlet?emailvalue="+v1,true);
+				xhr.open("GET","FacebookWebGlobalServlet?actiontype=checkEmail&emailvalue="+v1,true);
 		
 		//step 3 how xhr will send request to server
 			xhr.send();
@@ -75,7 +75,7 @@
 	function loadCountry(){
 			var xhr=new XMLHttpRequest();
 		
-			xhr.open("GET","LoadCountryServlet",true);
+			xhr.open("GET","FacebookWebGlobalServlet?actiontype=loadCountry,true);
 			xhr.send();
 			xhr.onreadystatechange= function(){
 			if(xhr.readyState==4){
@@ -90,7 +90,7 @@
 	function loadClock(){
 		var xhr=new XMLHttpRequest();
 	
-		xhr.open("GET","LoadClockServlet",true);
+		xhr.open("GET","FacebookWebGlobalServlet?actiontype=loadClock",true);
 		xhr.send();
 		xhr.onreadystatechange= function(){
 		if(xhr.readyState==4){
@@ -107,7 +107,7 @@
 	function loadCaptcha(){
 		var xhr=new XMLHttpRequest();
 		
-		xhr.open("GET","LoadCaptchaServlet",true);
+		xhr.open("GET","FacebookWebGlobalServlet?actiontype=loadCaptcha",true);
 		xhr.send();
 		xhr.onreadystatechange= function(){
 		if(xhr.readyState==4){
@@ -151,7 +151,7 @@
 				<input type="submit" class="account" value="Have an Account?">
 			</div>
 		</div>
-		<form class="form-right" action="RegisterationServlet" method="post">
+		<form class="form-right" action="FacebookWebGlobalServlet?actiontype=registeration" method="post">
 			<h2 class="text-uppercase">Registration form</h2>
 			<div class="row">
 				<div class="col-sm-6 mb-3">

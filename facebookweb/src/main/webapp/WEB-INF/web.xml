@@ -80,6 +80,12 @@
   	<description></description>
   	<servlet-class>com.facebookweb.controller.AddFriendServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>FacebookWebGlobalServlet</servlet-name>
+  	<display-name>FacebookWebGlobalServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.facebookweb.controller.FacebookWebGlobalServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterationServlet</servlet-name>
   	<url-pattern>/RegisterationServlet</url-pattern>
@@ -123,5 +129,9 @@
   <servlet-mapping>
   	<servlet-name>AddFriendServlet</servlet-name>
   	<url-pattern>/AddFriendServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FacebookWebGlobalServlet</servlet-name>
+  	<url-pattern>/FacebookWebGlobalServlet</url-pattern>
   </servlet-mapping>
 </web-app>
