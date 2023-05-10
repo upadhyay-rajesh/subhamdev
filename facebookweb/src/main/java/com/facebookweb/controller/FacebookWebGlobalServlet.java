@@ -28,44 +28,45 @@ public class FacebookWebGlobalServlet extends HttpServlet {
 
 		FacebookServiceInterface fs = FacebookServiceFactory.createObject();
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-
-		out.println("<html><body>");
-
 		if (actype.equalsIgnoreCase("checkEmail")) {
 			String email = request.getParameter("emailvalue");
 			FacebookUser fu = new FacebookUser();
 			fu.setEmail(email);
 			int i = fs.checkEmailService(fu);
+			String str="";
+			
 			if (i > 0) {
-				out.println("<font color=red>Email already have taken choose another email id</font>");
+				str="<font color=red>Email already have taken choose another email id</font>";
 			} else {
-				out.println("<font color=green>Valid Email</font>");
+				str="<font color=green>Valid Email</font>";
 			}
+			
+			RequestDispatcher rd=getServletContext().getRequestDispatcher("/checkemail.jsp");
+			request.setAttribute("message", str);
+			rd.forward(request, response);
 		}
 
 		if (actype.equalsIgnoreCase("loadCountry")) {
 			List<Country> i = fs.loadCountryService();
-			out.println("<select>");
-			for (Country cc : i) {
-				out.println("<option>" + cc.getCountryName() + "</option>");
-
-			}
-
-			out.println("</select>");
+			RequestDispatcher rd=getServletContext().getRequestDispatcher("/loadcountry.jsp");
+			request.setAttribute("message", i);
+			rd.forward(request, response);
+			
 		}
 		if (actype.equalsIgnoreCase("loadClock")) {
 			LocalTime lt = LocalTime.now();
-			out.println("Current time is  <input type=text value=" + lt + " id=c2 >");
+			RequestDispatcher rd=getServletContext().getRequestDispatcher("/loadclock.jsp");
+			request.setAttribute("message", lt);
+			rd.forward(request, response);
+			
 		}
 
 		if (actype.equalsIgnoreCase("loadCaptcha")) {
 			int rr = (int) ((Math.random()) * 10000);
-			out.println("Captcha Value <input type=text value=" + rr + " id=c disabled>");
-			out.println("<button type=button onClick=loadCaptcha()>Refresh</button>");
-			out.println("<br>Enter The Above Captcha Value <input type=text id=cc1>");
-			out.println("<button type=button onClick=validateCaptcha()>Validate</button>");
+			RequestDispatcher rd=getServletContext().getRequestDispatcher("/loadcaptcha.jsp");
+			request.setAttribute("message", rr);
+			rd.forward(request, response);
+			
 
 		}
 		if (actype.equalsIgnoreCase("registeration")) {
@@ -81,15 +82,12 @@ public class FacebookWebGlobalServlet extends HttpServlet {
 			fu.setEmail(email);
 			fu.setAddress(address);
 			int i = fs.registerUserService(fu);
-			if (i > 0) {
-				out.println("<br>Hello " + name);
-				out.println("<br>Your Registration is successful ");
-				out.println("<br><a href=login.html>Continue...</a> ");
-
-			} else {
-				out.println("oops something is wrong");
-			}
-
+			
+			RequestDispatcher rd=getServletContext().getRequestDispatcher("/registerresult.jsp");
+			request.setAttribute("nm", name);
+			request.setAttribute("message", i);
+			rd.forward(request, response);
+			
 		}
 		if (actype.equalsIgnoreCase("login")) {
 			String email = request.getParameter("email");
@@ -113,7 +111,7 @@ public class FacebookWebGlobalServlet extends HttpServlet {
 				rd.forward(request, response);
 
 			} else {
-				out.println("invalid id and password ");
+				//out.println("invalid id and password ");
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
 				rd.include(request, response);
 			}
@@ -139,7 +137,7 @@ public class FacebookWebGlobalServlet extends HttpServlet {
 		if (actype.equalsIgnoreCase("logoutprofile")) {
 
 		}
-		out.println("</body></html>");
+		
 	}
 
 }

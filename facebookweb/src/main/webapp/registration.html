@@ -75,7 +75,7 @@
 	function loadCountry(){
 			var xhr=new XMLHttpRequest();
 		
-			xhr.open("GET","FacebookWebGlobalServlet?actiontype=loadCountry,true);
+			xhr.open("GET","FacebookWebGlobalServlet?actiontype=loadCountry",true);
 			xhr.send();
 			xhr.onreadystatechange= function(){
 			if(xhr.readyState==4){

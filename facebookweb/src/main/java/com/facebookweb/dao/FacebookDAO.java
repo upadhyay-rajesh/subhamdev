@@ -48,15 +48,26 @@ public class FacebookDAO implements FacebookDAOInterface {
 		
 		//by default configure method will load hibernate.cfg.xml file
 		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		//SessionFactory class is using factory design pattern
+		//it is singleton also
 		
 		Session ss=sf.openSession();
 		
 		EntityTransaction et=ss.getTransaction();
 		et.begin();
 		
+		//before saving or persisting our object will be in new state or transient state i.e. unsaved state
+		
 			ss.save(fu);
+			
+			//after saving or persisting our object will be in managed state i.e. saved state
 		
 		et.commit();
+		
+		
+		
+		ss.close();
+		
 		i=1;
 		
 		return i;
@@ -225,6 +236,9 @@ public class FacebookDAO implements FacebookDAOInterface {
 		et.begin();
 		
 		ss.delete(fu); //select * from myfacebookuser where email=?
+		//after deleting  or removing our object will go to  remove state 
+		//from remove state if we want to take object back in managed state then we have to save or persist again
+		
 		et.commit();
 		
 			i=1;
