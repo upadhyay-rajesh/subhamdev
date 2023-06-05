@@ -2,6 +2,7 @@ package com.facebookrest.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,14 @@ public class FacebookService implements FacebookServiceInterface{
 	
 	@Autowired
 	private FacebookDAOInterface fd;
+	
+	public static Logger log=Logger.getLogger("FacebookService");
 
 	@Override
 	public void createProfile(FacebookUser fb) {
-		fd.save(fb);
+		//fd.save(fb);
+		log.info("inside service class create profile method at "+new java.util.Date());
+		fd.insertRecard(fb);
 		
 		
 	}
@@ -28,12 +33,13 @@ public class FacebookService implements FacebookServiceInterface{
 	@Override
 	public List<FacebookUser> viewAllService() {
 		// TODO Auto-generated method stub
-		return fd.findAll();
+		//return fd.findAll();
+		return null;
 	}
 
 	@Override
 	public FacebookUser viewProfileService(String em)throws UserNotFoundException {
-		Optional<FacebookUser> ff=fd.findById(em);
+		/*Optional<FacebookUser> ff=fd.findById(em);
 		if(ff.isPresent()) {
 			FacebookUser d=ff.get();
 			return d;
@@ -42,19 +48,20 @@ public class FacebookService implements FacebookServiceInterface{
 			throw new UserNotFoundException("user is not valid");
 		}
 		
-		
+		*/
+		return null;
 		
 	}
 
 	@Override
 	public void editprofile(FacebookUser fb) {
-		fd.saveAndFlush(fb);
+		//fd.saveAndFlush(fb);
 		
 	}
 
 	@Override
 	public void deleteprofile(String email) {
-		fd.deleteById(email);
+		//fd.deleteById(email);
 		
 	}
 
