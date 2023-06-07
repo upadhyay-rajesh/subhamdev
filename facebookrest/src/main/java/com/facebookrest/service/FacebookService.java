@@ -19,12 +19,12 @@ public class FacebookService implements FacebookServiceInterface{
 	@Autowired
 	private FacebookDAOInterface fd;
 	
-	public static Logger log=Logger.getLogger("FacebookService");
+	
 
 	@Override
 	public void createProfile(FacebookUser fb) {
 		//fd.save(fb);
-		log.info("inside service class create profile method at "+new java.util.Date());
+		//log.info("inside service class create profile method at "+new java.util.Date());
 		fd.insertRecard(fb);
 		
 		
