@@ -2,6 +2,8 @@ package com.facebookrest.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +45,7 @@ public class FacebookController {
 	}
 	
 	@PostMapping("createprofile")
-	public String create(@RequestBody FacebookUser fb) {
+	public String create(@Valid @RequestBody FacebookUser fb) {
 		
 		fs.createProfile(fb);
 		

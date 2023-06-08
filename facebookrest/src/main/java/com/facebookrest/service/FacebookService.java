@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.facebookrest.dao.FacebookDAOInterface;
@@ -13,7 +15,7 @@ import com.facebookrest.entity.FacebookUser;
 import com.facebookrest.exception.UserNotFoundException;
 
 @Service
-@Transactional
+@Transactional(isolation = Isolation.SERIALIZABLE,propagation = Propagation.REQUIRED,readOnly = true,timeout=5000)
 public class FacebookService implements FacebookServiceInterface{
 	
 	@Autowired
